@@ -1,0 +1,35 @@
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\obj\Debug\Choice.baml
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\obj\Debug\MainWindow.baml
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\obj\Debug\Choice.g.cs
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\obj\Debug\MainWindow.g.cs
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\obj\Debug\FirstGround_MarkupCompile.cache
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\bin\Debug\FirstGround.exe
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\bin\Debug\FirstGround.pdb
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\obj\Debug\App.g.cs
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\obj\Debug\FirstGround.g.resources
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\obj\Debug\FirstGround.Properties.Resources.resources
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\obj\Debug\FirstGround.csproj.GenerateResource.Cache
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\obj\Debug\FirstGround.exe
+\\psf\Home\Documents\Visual Studio 2012\Projects\FirstGround\FirstGround\obj\Debug\FirstGround.pdb
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\obj\Debug\FirstGround.exe
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\obj\Debug\FirstGround.pdb
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\bin\Debug\FirstGround.exe
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\bin\Debug\FirstGround.pdb
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\bin\Debug\ModelView.exe
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\bin\Debug\CK.Plugin.Model.dll
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\bin\Debug\CK.Plugin.Config.Model.dll
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\bin\Debug\ActivityLogger.dll
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\bin\Debug\CK.Core.dll
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\bin\Debug\ModelView.pdb
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\bin\Debug\CK.Plugin.Model.xml
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\bin\Debug\ActivityLogger.pdb
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\obj\Debug\FirstGround.csprojResolveAssemblyReference.cache
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\obj\Debug\Choice.baml
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\obj\Debug\MainWindow.baml
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\obj\Debug\Choice.g.cs
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\obj\Debug\MainWindow.g.cs
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\obj\Debug\App.g.cs
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\obj\Debug\FirstGround_MarkupCompile.cache
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\obj\Debug\FirstGround.g.resources
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\obj\Debug\FirstGround.Properties.Resources.resources
+C:\Users\Akir\Documents\Dev\CiView\FirstGround\FirstGround\obj\Debug\FirstGround.csproj.GenerateResource.Cache

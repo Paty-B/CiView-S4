@@ -21,10 +21,10 @@ namespace ModelView
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindowActivityLogger : Window
     {
         private BagItems _bag;
-        public MainWindow()
+        public MainWindowActivityLogger()
         {
             _bag = new BagItems();
             DataContext = new ActivityLoggerViewModel(_bag);

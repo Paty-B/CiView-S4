@@ -3,7 +3,6 @@ using NUnit.Framework;
 using ActivityLogger.SewerModel;
 using ActivityLogger.Sink;
 using CK.Core;
-using TestWPF;
 
 namespace ActivityLogger.Tests
 {

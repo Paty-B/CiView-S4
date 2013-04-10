@@ -140,7 +140,7 @@ namespace ActivityLogger.SewerModel
             }
             else
             {
-                return null;
+                return String.Empty;
             }
             
         }
@@ -177,6 +177,7 @@ namespace ActivityLogger.SewerModel
                     Parent.LastChild = null;
                     Parent = null;
                 }
+                Host.OnVerboseItemDeleted(this, EventArgs.Empty);
 
             }
             else
@@ -212,6 +213,7 @@ namespace ActivityLogger.SewerModel
                     Next = null;
                 }
 
+                Host.OnVerboseItemDeleted(this, EventArgs.Empty);
                 Host.OnItemDeleted(this,EventArgs.Empty);
                
             }

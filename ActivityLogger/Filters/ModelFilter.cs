@@ -20,12 +20,20 @@ namespace ActivityLogger.Filters
             Host = host;
         }
         
+        public void DeleteBranches(LineItem sender, EventArgs e)
+        {
+            if (sender.Depth == 0)
+            {
+                DeleteBranches();
+            }
+        }
+
         public void DeleteBranches()
         {
-            if(NumChildren<Host.ChildrenNumber)
+            if (NumChildren < Host.ChildrenNumber)
             {
                 int j = Host.ChildrenNumber - NumChildren;
-                for (int i=0;i<j;i++)
+                for (int i = 0; i < j; i++)
                 {
                     Host.FirstChild.Delete();
                 }

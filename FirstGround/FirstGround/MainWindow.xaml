@@ -1,0 +1,14 @@
+﻿<Window x:Class="FirstGround.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" 
+        WindowStyle='None' 
+        Icon="img/icon.png"
+        Background="Transparent"
+        Title="MainWindow" Height="291.791" Width="380.223" ResizeMode="NoResize">
+    <Image HorizontalAlignment="Left" Width="338" Source="img/fg.png" Margin="10,0,0,28"/>
+</Window>
+
+  
+

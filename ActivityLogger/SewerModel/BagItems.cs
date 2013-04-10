@@ -78,6 +78,14 @@ namespace ActivityLogger.SewerModel
             if (ItemDeleted != null)
                 ItemDeleted(sender, e);
         }
+
+        public delegate void VerboseItemDeletedEventHandler(LineItem sender, EventArgs e);
+        public event VerboseItemDeletedEventHandler VerboseItemDeleted;
+        internal virtual void OnVerboseItemDeleted(LineItem sender, EventArgs e)
+        {
+            if (VerboseItemDeleted != null)
+                VerboseItemDeleted(sender, e);
+        }
         public delegate void ChildInsertedEventHandler(LineItem sender, EventArgs e);
         public event ChildInsertedEventHandler ChildInserted;
         internal virtual void OnChildInserted(LineItem sender, EventArgs e)

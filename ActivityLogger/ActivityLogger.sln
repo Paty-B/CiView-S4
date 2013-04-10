@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryLogRecorder.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryLogRecorder", "BinaryLogRecorder\BinaryLogRecorder.csproj", "{906823E7-541B-437E-84FA-3C975F78487B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstGround", "..\FirstGround\FirstGround\FirstGround.csproj", "{CA10549E-0275-442B-9954-07DC47B717A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{906823E7-541B-437E-84FA-3C975F78487B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{906823E7-541B-437E-84FA-3C975F78487B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{906823E7-541B-437E-84FA-3C975F78487B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA10549E-0275-442B-9954-07DC47B717A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA10549E-0275-442B-9954-07DC47B717A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA10549E-0275-442B-9954-07DC47B717A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA10549E-0275-442B-9954-07DC47B717A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

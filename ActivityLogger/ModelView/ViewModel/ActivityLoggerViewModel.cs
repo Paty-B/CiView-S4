@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ActivityLogger.SewerModel;
 using ActivityLogger.Sink;
+using ActivityLogger.Filters;
 using CK.Core;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -25,6 +26,8 @@ namespace ModelView.ViewModel
         private bool _logLevelWarnIsChecked = true;
         private bool _logLevelErrorIsChecked = true;
         private bool _logLevelFatalIsChecked = true;
+        private LineItem _selectedLog;
+        private int _filterNbChildren;
 
         #endregion
 
@@ -32,15 +35,109 @@ namespace ModelView.ViewModel
         
         public ObservableCollection<LineItem> Logs { get { return _logs; } }
         public PaginatedObservableCollection<LineItem> Obs { get { return _obs; } }
-        public ObservableCollection<string> LogsListInfoBox { get { return _logsListInfoBox; } }
-        public bool LogLevelInfoIsChecked { get { return _logLevelInfoIsChecked; } set { _logLevelInfoIsChecked = value; ReDisplay(); } }
-        public bool LogLevelTaceIsChecked { get { return _logLevelTaceIsChecked; } set { _logLevelTaceIsChecked = value; ReDisplay(); } }
-        public bool LogLevelWarnIsChecked { get { return _logLevelWarnIsChecked; } set { _logLevelWarnIsChecked = value; ReDisplay(); } }
-        public bool LogLevelErrorIsChecked { get { return _logLevelErrorIsChecked; } set { _logLevelErrorIsChecked = value; ReDisplay(); } }
+        public ObservableCollection<string> LogsListInfoBox 
+        { 
+            get 
+            {
+                if (_selectedLog == null)
+                {
+                    return new ObservableCollection<string>();
+                }
+                else
+                {  
+                    return _logsListInfoBox;
+                }              
+            } 
+        }
+        public bool LogLevelTaceIsChecked
+        {
+            get { return _logLevelTaceIsChecked; }
+            set
+            {
+                _logLevelTaceIsChecked = value; 
+                if (value)
+                {
+                    _logLevelInfoIsChecked = true;
+                    OnPropertyChanged("LogLevelInfoIsChecked");
+                    _logLevelWarnIsChecked = true;
+                    OnPropertyChanged("LogLevelWarnIsChecked");
+                    _logLevelErrorIsChecked = true;
+                    OnPropertyChanged("LogLevelErrorIsChecked");
+                    _logLevelFatalIsChecked = true;
+                    OnPropertyChanged("LogLevelFatalIsChecked");
+                }; 
+                ReDisplay();
+            }
+        }
+        public bool LogLevelInfoIsChecked
+        {
+            get { return _logLevelInfoIsChecked; }
+            set
+            {
+                _logLevelInfoIsChecked = value;
+                if (value)
+                {
+                    _logLevelWarnIsChecked = true;
+                    OnPropertyChanged("LogLevelWarnIsChecked");
+                    _logLevelErrorIsChecked = true;
+                    OnPropertyChanged("LogLevelErrorIsChecked");
+                    _logLevelFatalIsChecked = true;
+                    OnPropertyChanged("LogLevelFatalIsChecked");
+                }; 
+                ReDisplay();
+            }
+        }
+        public bool LogLevelWarnIsChecked
+        {
+            get { return _logLevelWarnIsChecked; }
+            set
+            {
+                _logLevelWarnIsChecked = value; if (value)
+                {
+                    _logLevelErrorIsChecked = true;
+                    OnPropertyChanged("LogLevelErrorIsChecked");
+                    _logLevelFatalIsChecked = true;
+                    OnPropertyChanged("LogLevelFatalIsChecked");
+                }; ReDisplay();
+            }
+        }
+        public bool LogLevelErrorIsChecked
+        {
+            get { return _logLevelErrorIsChecked; }
+            set
+            {
+                _logLevelErrorIsChecked = value; if (value)
+                {
+                    _logLevelFatalIsChecked = true;
+                    OnPropertyChanged("LogLevelFatalIsChecked");
+                }; ReDisplay();
+            }
+        }
         public bool LogLevelFatalIsChecked { get { return _logLevelFatalIsChecked; } set { _logLevelFatalIsChecked = value; ReDisplay(); } }
-        public LineItem SelectedLog { get; set; }
+        public LineItem SelectedLog 
+        {
+            get
+            {
+                return _selectedLog;
+            }
+            set
+            {
+                _selectedLog = value;
+                addInfoLogToInfoBox(_selectedLog);
+                OnPropertyChanged("LogsListInfoBox");
+            }
+        }
         private ICommand toggleCollapseCommand;
         private ICommand displayInfoCommand;
+        public int TraceCount { get; set; }
+        public int InfoCount { get; set; }
+        public int WarnCount { get; set; }
+        public int ErrorCount { get; set; }
+        public int FatalCount { get; set; }
+        public int TotalCount { get { return TraceCount + InfoCount + WarnCount + ErrorCount + FatalCount;}}
+        public ModelFilter mf { get; set; }
+        public int FilterNbChildren { get { return _filterNbChildren; } set { _filterNbChildren = value; DeleteBranches(); } }
+        public BagItems bag;
         //private ICommand checkLogLevelsCommand;
 
         #endregion
@@ -49,15 +146,26 @@ namespace ModelView.ViewModel
 
         public ActivityLoggerViewModel(BagItems bag)
         {
+            TraceCount = 0;
+            InfoCount = 0;
+            WarnCount = 0;
+            ErrorCount = 0;
+            FatalCount = 0;
+            this.bag = bag;
+            FilterNbChildren = 10;
             _logs = new ObservableCollection<LineItem>();
-            _obs = new PaginatedObservableCollection<LineItem>(10);
+            _obs = new PaginatedObservableCollection<LineItem>();
             _logsListInfoBox = new ObservableCollection<string>();
             IDefaultActivityLogger logger = DefaultActivityLogger.Create();
 
-            ActivityLoggerLineItemSink log = new ActivityLoggerLineItemSink(bag);            
+            ActivityLoggerLineItemSink log = new ActivityLoggerLineItemSink(bag);
+            mf = new ModelFilter(FilterNbChildren, bag);
 
 
             bag.ChildInserted += addLogToObs;
+            bag.VerboseItemDeleted += deleteLogToObs;
+            bag.ChildInserted += IncrementCount;
+            bag.ChildInserted += mf.DeleteBranches;
             logger.Register(log);
 
             using (logger.OpenGroup(LogLevel.Trace, () => "EndMainGroup", "MainGroup (trace)"))
@@ -76,6 +184,15 @@ namespace ModelView.ViewModel
                 }
                 logger.Fatal("Fatal (Fatal)");
             }
+            using (logger.OpenGroup(LogLevel.Trace, () => "endSecondMainGroup", "secondmaingroup (trace)"))
+            {
+                logger.Info("der");
+            }
+        }
+
+        private void deleteLogToObs(LineItem sender, EventArgs e)
+        {
+            Obs.Remove(sender);
         }
 
         private void addLogToObs(LineItem sender, EventArgs e)
@@ -169,7 +286,7 @@ namespace ModelView.ViewModel
         
         public void addInfoLogToInfoBox(LineItem sender)
         {
-            
+            LogsListInfoBox.Clear();
             LogsListInfoBox.Add("Content : " + sender.Content);
             LogsListInfoBox.Add("Deph : " + sender.Depth);
             LogsListInfoBox.Add("logLevel : " + sender.LogType.ToString());
@@ -237,6 +354,49 @@ namespace ModelView.ViewModel
             }
             Obs.ForceRaiseChanged();
            
+        }
+
+        private void IncrementCount(LineItem sender, EventArgs e)
+        {
+            switch (sender.LogType)
+            {
+                case LogLevel.Trace :
+                    TraceCount++;
+                    break;
+                case LogLevel.Info:
+                    InfoCount++;
+                    break;
+                case LogLevel.Warn:
+                    WarnCount++;
+                    break;
+                case LogLevel.Error:
+                    ErrorCount++;
+                    break;
+                case LogLevel.Fatal:
+                    FatalCount++;
+                    break;            
+            }
+        }
+
+
+        public void DeleteBranches(LineItem sender, EventArgs e)
+        {
+            if (sender.Depth == 0)
+            {
+                DeleteBranches();
+            }
+        }
+
+        public void DeleteBranches()
+        {
+            if (FilterNbChildren < bag.ChildrenNumber)
+            {
+                int j = bag.ChildrenNumber - FilterNbChildren;
+                for (int i = 0; i < j; i++)
+                {
+                    bag.FirstChild.Delete();
+                }
+            }
         }
 
         //public ICommand CheckLogLevelsCommand

@@ -85,7 +85,9 @@
     <Compile Include="ViewModel\ActivityLoggerViewModel.cs" />
     <Compile Include="PaginatedObservableCollection.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\ColorLineItemConverter.cs" />
     <Compile Include="ViewModel\LineItemVisibilityConverter.cs" />
+    <Compile Include="ViewModel\LogLevelContentConverter.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +158,9 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
